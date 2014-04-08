@@ -8,7 +8,7 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-CAS Maestro is a WordPress plugin that allows you to configure your centralized authentication service, CAS, for an integrated log in with WordPress. CAS Maestro also provides the possibility to connect to a LDAP server.
+CAS Maestro allows you to configure your centralized authentication service, CAS, for an integrated log in with WordPress. LDAP is optional.
 
 == Description ==
 
