@@ -19,6 +19,7 @@ The users that attempt to start their sessions in WordPress, will be redirected 
 CAS Maestro can also connect to a LDAP server to access personal data to be used in user profile.
 
 Features included:
+
 *	Full integration with the WordPress authentication system
 *	One of the most secure CAS plugins for WordPress
 *	Possibility to pre-register some known users, with the desired role
