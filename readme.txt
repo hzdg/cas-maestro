@@ -3,8 +3,8 @@ Contributors: vaurdan, jpargana, ricardobaeta
 Donate link: https://dsi.tecnico.ulisboa.pt
 Tags: cas, maestro, central, centralized, authentication, auth, service, system, server, phpCAS, integration, ldap
 Requires at least: 3.5
-Tested up to: 3.5
-Stable tag: 1.0
+Tested up to: 3.9
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,21 +12,21 @@ CAS Maestro allows you to configure your centralized authentication service, CAS
 
 == Description ==
 
-If you have a CAS service and you want to authenticate your users in WordPress with the same credentials, you can use this plugin to do your that job.
+If you have a CAS service and you want to authenticate your users in WordPress with the same credentials, you can use this plugin to get the job done.
 
-The users that attempt to start their sessions in WordPress, will be redirected to the CAS single sign-on page, where their sessions starts. If the user data is valid, they are redirected back to WordPress. If the credentials already exist in your WordPress the user will be authenticated. Otherwise, if the user was pre-register in configuration page, the user will be created.
+The users that attempt to start their sessions in WordPress, will be redirected to the CAS single sign-on page, where their sessions starts. If the user data is valid, they are redirected back to WordPress. If the credentials already exist in your WordPress the user will be authenticated. Otherwise, if the user was pre-registered in the configuration page, the user will be created.
 
 CAS Maestro can also connect to a LDAP server to access personal data to be used in user profile.
 
 Features included:
 
-*	Full integration with the WordPress authentication system
-*	One of the most secure CAS plugins for WordPress
-*	Possibility to pre-register some known users, with the desired role
-*	LDAP integration for user data fill, such as name and e-mail 
-*	Validation mechanisms to avoid getting blocked in case of misconfiguration
-*	Mail notification for pre-registered users
-*	Network activation allowed (todo: network panel for configuration)
+* Full integration with the WordPress authentication system
+* One of the most secure CAS plugins for WordPress
+* Possibility to pre-register some known users, with the desired role
+* LDAP integration for user data fill, such as name and e-mail 
+* Validation mechanisms to avoid getting blocked in case of misconfiguration
+* Mail notification for pre-registered users
+* Network activation allowed (todo: network panel for configuration)
 
 == Installation ==
 
@@ -40,10 +40,10 @@ Features included:
 
 == Frequently Asked Questions ==
 
-= In case i can not access the content manager due to a misconfiguration of this plugin, what steps should i perform? =
+= In case that I cannot access the content manager due to a misconfiguration of this plugin, what steps should I perform? =
 
-1. Edit the file wp-config.php and search for define('WP_DEBUG', false); definition
-2. Before that definition, write define('WPCAS_BYPASS',true);
+1. Edit the file wp-config.php and search for `define('WP_DEBUG', false)`su; definition
+2. Before that definition, write `define('WPCAS_BYPASS',true)`;
 3. Reconfigure the plugin and remove the line that was added.
 
 Alternatively, you may simply disable the behavior of CAS Maestro as follows:
@@ -59,6 +59,9 @@ Alternatively, you may simply disable the behavior of CAS Maestro as follows:
 3. Mailing options
 
 == Changelog ==
+
+= 1.0.1 =
+* Bug fix with includes, ready for WordPress 3.9
 
 = 1.0 =
 * Initial release.
