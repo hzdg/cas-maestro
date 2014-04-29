@@ -1,4 +1,4 @@
-<? 
+<?php 
 $raw_roles = get_editable_roles();
 
 //Get number of allowed users
@@ -10,9 +10,9 @@ foreach($raw_roles as $role => $value) {
 }
 ?>
   <script type="text/javascript">
-    var roles = <?=json_encode($roles)?>;
-    var roles_name = <?=json_encode($roles_name)?>;
-    var CurrentTextboxes = <?=$num_allowed?>;
+    var roles = <?php echo json_encode($roles)?>;
+    var roles_name = <?php echo json_encode($roles_name)?>;
+    var CurrentTextboxes = <?php echo $num_allowed?>;
   </script>
 
   <h2><?php _e("User registration", 'CAS_Maestro'); ?></h2>
@@ -20,9 +20,9 @@ foreach($raw_roles as $role => $value) {
     <div class="main_content">
       <div>
         <p><?php _e("In order to register a new user an email address is required. In case you don’t want to set the email address manually, please chose from the options below.", 'CAS_Maestro'); ?></p>
-        <?if($this->settings['e-mail_registration'] < 1 || $this->settings['e-mail_registration'] > 3 ) $this->settings['e-mail_registration'] = 1; ?>
+        <?php if($this->settings['e-mail_registration'] < 1 || $this->settings['e-mail_registration'] > 3 ) $this->settings['e-mail_registration'] = 1; ?>
         <input id="no-e-mail" type="radio" name="e-mail_registration" value="1" <?php echo ($this->settings['e-mail_registration'] == '1')?'checked':''; ?>><label for="no-e-mail"><?php _e("No mail creation", 'CAS_Maestro'); ?></label><br />
-        <input id="e-mail-suffix" type="radio" name="e-mail_registration" value="2" <?php echo ($this->settings['e-mail_registration'] == '2')?'checked':''; ?>><label for="e-mail-suffix"><?php _e("E-mail suffix username@", 'CAS_Maestro'); ?></label><input type="text" name="email_suffix" id="email_suffix_inp" value="<?php echo $this->settings['email_suffix']; ?>" placeholder="<?=parse_url(site_url(),PHP_URL_HOST)?>" size="15" /><br />
+        <input id="e-mail-suffix" type="radio" name="e-mail_registration" value="2" <?php echo ($this->settings['e-mail_registration'] == '2')?'checked':''; ?>><label for="e-mail-suffix"><?php _e("E-mail suffix username@", 'CAS_Maestro'); ?></label><input type="text" name="email_suffix" id="email_suffix_inp" value="<?php echo $this->settings['email_suffix']; ?>" placeholder="<?php echo parse_url(site_url(),PHP_URL_HOST)?>" size="15" /><br />
         <input id="ldap-e-mail" type="radio" name="e-mail_registration" value="3" <?php echo ($this->settings['e-mail_registration'] == '3')?'checked':''; ?>><label for="ldap-e-mail"><?php _e("LDAP server connection", 'CAS_Maestro'); ?></label>
       </div>
       <div id="ldap_container">
@@ -72,7 +72,7 @@ foreach($raw_roles as $role => $value) {
   <div>
      <table id="autoAdd">
         <tbody>
-          <?
+          <?php
           $i=1;
           foreach($this->allowed_users as $username => $curr_role) {
           $roles = array();
@@ -89,20 +89,20 @@ foreach($raw_roles as $role => $value) {
           ?>
             <tr>
             <td class="prefix">
-              <input type="text" class="istid" id="txt<?=$i?>" name="username[<?=$i?>]" value="<?=$username?>" style="width: 150px;"></input>
+              <input type="text" class="istid" id="txt<?php echo $i?>" name="username[<?php echo $i?>]" value="<?php echo $username?>" style="width: 150px;"></input>
             </td>
             <td>
-              <select class="to_select_2" name="role[<?=$i?>]" style="width: 180px;">
-                <?=$select_options?>
+              <select class="to_select_2" name="role[<?php echo $i?>]" style="width: 180px;">
+                <?php echo $select_options?>
               </select>
             </td>
           </tr>
-          <? $i++; } ?>
+          <?php $i++; } ?>
           <tr>
-            <td class="prefix"><input class="istid" type="text" id="txt<?=$i?>" name="username[<?=$i?>]" style="width: 150px;"></input></td>
+            <td class="prefix"><input class="istid" type="text" id="txt<?php echo $i?>" name="username[<?php echo $i?>]" style="width: 150px;"></input></td>
             <td>
-              <select class="to_select_2" name="role[<?=$i?>]" style="width: 180px;">
-             <?   
+              <select class="to_select_2" name="role[<?php echo $i?>]" style="width: 180px;">
+             <?php   
              $select_options="<option></option>";
              foreach($raw_roles as $role => $value) {
               $roles[] = $role;
@@ -111,7 +111,7 @@ foreach($raw_roles as $role => $value) {
               $select_options .= "<option value='$role'>".__($value['name'])."</option>\n";
               } ?>
 
-              <?=$select_options?>
+              <?php echo $select_options?>
               </select>       
             </td>
           </tr>

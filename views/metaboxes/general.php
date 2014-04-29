@@ -15,12 +15,12 @@
                 </tr>
                 <tr>
                     <th width="150px" scope="row"><label for="server_hostname_inp"><?php _e('Server hostname', 'CAS_Maestro'); ?>*</label></th>
-                    <td><input <?check_empty($this->settings['server_hostname'])?> type="text" name="server_hostname" id="server_hostname_inp" value="<?php echo $this->settings['server_hostname']; ?>" size="25" /></td>
+                    <td><input <?php check_empty($this->settings['server_hostname'])?> type="text" name="server_hostname" id="server_hostname_inp" value="<?php echo $this->settings['server_hostname']; ?>" size="25" /></td>
                 </tr>
                 <tr>
                     <th width="150px" scope="row"><label for="server_port_inp"><?php _e('Server port', 'CAS_Maestro'); ?>*</label></th>
                     <td>
-                        <input <?check_empty($this->settings['server_port'])?> type="text" name="server_port" id="server_port_inp" value="<?php echo $this->settings['server_port']; ?>" size="25" />
+                        <input <?php check_empty($this->settings['server_port'])?> type="text" name="server_port" id="server_port_inp" value="<?php echo $this->settings['server_port']; ?>" size="25" />
                     </td>
                 </tr>
                 <tr>

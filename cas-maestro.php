@@ -3,7 +3,7 @@
 Plugin Name: CAS Maestro
 Plugin URL: http://nme.ist.utl.pt
 Description: CAS plugin with LDAP integration
-Version: 1.0.1
+Version: 1.0.2
 Author: NME - Núcleo de Multimédia e E-Learning.
 Author URI: http://nme.ist.utl.pt
 Text Domain: CAS_Maestro
@@ -61,7 +61,7 @@ class CAS_Maestro {
  				'cas_menu_location'=>'sidebar',
  				'new_user' => FALSE,
 			    'email_suffix' => '',
-			    'cas_version' => CAS_VERSION_1_0,
+			    'cas_version' => 1.0,
 			    'server_hostname' => 'yourschool.edu',
 			    'server_port' => '443',
 			    'server_path' => '',
@@ -134,6 +134,9 @@ class CAS_Maestro {
 					phpCAS::setNoCasServerValidation();
 				unset($phpCas);
 				// if you want to set a cert, replace the above few lines	
+
+				if(defined('CAS_MAESTRO_DEBUG_ON') && CAS_MAESTRO_DEBUG_ON == true)
+					phpCAS::setDebug(CAS_MAESTRO_PLUGIN_PATH . 'debug.log');
 
 				/**
 				 * Filters and actions registration
@@ -498,7 +501,7 @@ class CAS_Maestro {
 	}
 
 	function onLoad_settings_page() {
-		if ( $_POST["submit"] ) {
+		if ( isset($_POST['submit']) && $_POST["submit"] ) {
 			global $output_error;
 			$this->save_settings();
 			$url_parameters = '&success=true';

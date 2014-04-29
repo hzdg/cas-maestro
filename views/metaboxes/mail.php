@@ -1,4 +1,4 @@
-<? $settings = $this->settings; ?>
+<?php $settings = $this->settings; ?>
 <h2><?php _e("Sender", 'CAS_Maestro'); ?></h2>
 <table width="700px" cellspacing="2" cellpadding="5" class="editform">
        <tr>
@@ -34,11 +34,11 @@
         <div class="mail_body">
           <div>
             <p><?php _e("Message body sent to the User", 'CAS_Maestro'); ?></p>
-            <textarea type="text" name="welcome_user_body" id="user_email_suffix_inp"><?=$this->settings['welcome_mail']['user_body']?></textarea>          
+            <textarea type="text" name="welcome_user_body" id="user_email_suffix_inp"><?php echo $this->settings['welcome_mail']['user_body']?></textarea>          
           </div>
           <div>
             <p><?php _e("Message body sent to the Sender", 'CAS_Maestro'); ?></p>
-            <textarea type="text" name="welcome_global_body" id="global_email_suffix_inp"><?=$this->settings['welcome_mail']['global_body']?></textarea>
+            <textarea type="text" name="welcome_global_body" id="global_email_suffix_inp"><?php echo $this->settings['welcome_mail']['global_body']?></textarea>
           </div>
         </div>
       </div>
@@ -51,11 +51,11 @@
         <div class="mail_body">
           <div>
             <p><?php _e("Message body sent to the User", 'CAS_Maestro'); ?></p>
-            <textarea type="text" name="wait_user_body" id="email_suffix_inp"><?=$this->settings['wait_mail']['user_body']?></textarea>
+            <textarea type="text" name="wait_user_body" id="email_suffix_inp"><?php echo $this->settings['wait_mail']['user_body']?></textarea>
           </div>
           <div>
             <p><?php _e("Message body sent to the Sender", 'CAS_Maestro'); ?></p>
-            <textarea type="text" name="wait_global_body" id="email_suffix_inp"><?=$this->settings['wait_mail']['global_body']?></textarea>
+            <textarea type="text" name="wait_global_body" id="email_suffix_inp"><?php echo $this->settings['wait_mail']['global_body']?></textarea>
           </div>
         </div>
       </div>

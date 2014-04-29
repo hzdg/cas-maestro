@@ -11,12 +11,12 @@ get_header(); ?>
 		<div id="content" role="main">
 				<header class="entry-header">
 					<h1 class="entry-title">
-						<?=__("Ooops, there was an error.",'CAS_Maestro')?>
+						<?php echo __("Ooops, there was an error.",'CAS_Maestro')?>
 					</h1>
 				</header>
 	           
 				<div class="entry-content">
-					<?=sprintf(__("The username %s isn't allowed to register in this website. If you think this is a mistake, please contact the <a href=\"mailto:%s\">website administrator</a>."),$username,get_option('admin_email'));?>
+					<?php echo sprintf(__("The username %s isn't allowed to register in this website. If you think this is a mistake, please contact the <a href=\"mailto:%s\">website administrator</a>."),$username,get_option('admin_email'));?>
 					<p><a href="/wp-login.php?action=logout">Log out</a> of CAS.</p>
 
 				</div>
