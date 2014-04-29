@@ -2,7 +2,7 @@ jQuery(document).ready( function($) {
     // close postboxes that should be closed
     $('.if-js-closed').removeClass('if-js-closed').addClass('closed');
     // postboxes setup
-    postboxes.add_postbox_toggles('<? echo $this->settings_hook ?>');
+    postboxes.add_postbox_toggles('<?php echo $this->settings_hook ?>');
     $('#cas_version_inp').select2();
     $('.to_select_2').select2({placeholder: casmaestro.choose_role});
     $('#ldap_proto').select2();

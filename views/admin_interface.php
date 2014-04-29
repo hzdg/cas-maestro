@@ -1,8 +1,8 @@
 <div class="wrap">
 	    <div id="icon-themes" class="icon32"><br></div>
-        <h2><?=__('CAS Maestro Settings','CAS_Maestro')?></h2>
+        <h2><?php echo __('CAS Maestro Settings','CAS_Maestro')?></h2>
         <?php
-            if ( 'true' == esc_attr( $_GET['success'] ) 
+            if ( isset( $_GET['success'] ) && 'true' == esc_attr( $_GET['success'] ) 
                 && !isset($_GET['error'])) 
                     echo '<div class="updated" ><p>'.__('CAS Maestro settings has been updated.', 'CAS_Maestro').'</p></div>';
             if(isset($_GET['error']))
