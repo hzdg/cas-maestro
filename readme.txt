@@ -4,7 +4,7 @@ Donate link: https://dsi.tecnico.ulisboa.pt
 Tags: cas, maestro, central, centralized, authentication, auth, service, system, server, phpCAS, integration, ldap
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,9 @@ Alternatively, you may simply disable the behavior of CAS Maestro as follows:
 3. Mailing options
 
 == Changelog ==
+
+= 1.0.4 =
+* phpCAS deprecated functions replaced
 
 = 1.0.3 =
 * Minor bug fixes
