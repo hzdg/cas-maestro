@@ -3,7 +3,7 @@
 Plugin Name: CAS Maestro
 Plugin URL: http://nme.ist.utl.pt
 Description: CAS plugin with LDAP integration
-Version: 1.0.2
+Version: 1.0.4
 Author: NME - Núcleo de Multimédia e E-Learning.
 Author URI: http://nme.ist.utl.pt
 Text Domain: CAS_Maestro
@@ -338,7 +338,7 @@ class CAS_Maestro {
 
 	function process_logout() {
 		session_destroy();
-	    phpCAS::logoutWithUrl(get_option('siteurl'));
+	    phpCAS::logoutWithRedirectService(get_option('siteurl'));
 	    exit();
 	}	
 

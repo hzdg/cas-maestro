@@ -41,7 +41,7 @@ foreach($raw_roles as $role => $value) {
             </tr>
             <tr valign="center">
               <th width="150px" scope="row"><?php _e("Server hostname", 'CAS_Maestro'); ?>* <br /><span><?php echo sprintf(__("(with %s or %s)", 'CAS_Maestro'), 'ldap://', 'ldaps://'); ?></span></th> 
-              <td><input type="text" <?check_empty($this->settings['ldap_server'])?>  name="ldap_server" id="ldap_server" value="<?php echo $this->settings['ldap_server']; ?>" size="35" /></td>
+              <td><input type="text" <?php check_empty($this->settings['ldap_server'])?>  name="ldap_server" id="ldap_server" value="<?php echo $this->settings['ldap_server']; ?>" size="35" /></td>
             </tr>
             <tr valign="center">
               <th width="150px" scope="row"> <?php _e("Username <abbr title='(Relative Distinguished Name)'>RDN</abbr>", 'CAS_Maestro');?></th>
@@ -53,7 +53,7 @@ foreach($raw_roles as $role => $value) {
             </tr>
             <tr valign="center">
               <th width="150px" scope="row"><?php _e("Base DN", 'CAS_Maestro'); ?>*</th>
-              <td><input type="text" <?check_empty($this->settings['ldap_basedn'])?> name="ldap_basedn" id="ldap_bdn" value="<?php echo $this->settings['ldap_basedn']; ?>" size="35" /></td>
+              <td><input type="text" <?php check_empty($this->settings['ldap_basedn'])?> name="ldap_basedn" id="ldap_bdn" value="<?php echo $this->settings['ldap_basedn']; ?>" size="35" /></td>
             </tr>
           </table>
           <div class='availability_result' id='ldap_availability_result'></div>
