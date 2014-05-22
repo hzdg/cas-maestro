@@ -4,7 +4,7 @@ Donate link: https://dsi.tecnico.ulisboa.pt
 Tags: cas, maestro, central, centralized, authentication, auth, service, system, server, phpCAS, integration, ldap
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.0.4
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,15 +42,22 @@ Features included:
 
 = In case that I cannot access the content manager due to a misconfiguration of this plugin, what steps should I perform? =
 
+You can bypass the CAS Authentication logging-in on http://www.example.com/wp-login.php?wp. This will allow you to login using your WordPress account.
+
+Beside that, you can temporary disable the WordPress behavior doing the following: 
+
 1. Edit the file wp-config.php and search for `define('WP_DEBUG', false)`su; definition
 2. Before that definition, write `define('WPCAS_BYPASS',true)`;
 3. Reconfigure the plugin and remove the line that was added.
 
-Alternatively, you may simply disable the behavior of CAS Maestro as follows:
+Alternatively, you may simply uninstall CAS Maestro as follows:
 
 1. Remove the directory of plugin CAS Maestro
 2. Perform access according to the login WordPess
 3. Reinstall CAS Maestro
+
+= It is possible to login using WordPress accounts? =
+Yes. But the login URL is slighty different: you must login over `/wp-login.php?wp` URL. This will give access to the standard WordPress login form so you can use both authentication methods.
 
 == Screenshots ==
 
@@ -59,6 +66,10 @@ Alternatively, you may simply disable the behavior of CAS Maestro as follows:
 3. Mailing options
 
 == Changelog ==
+
+= 1.1 =
+* Bypass to the CAS authentication implemented using a query parameter
+* Minor bug fixes
 
 = 1.0.4 =
 * phpCAS deprecated functions replaced
@@ -78,5 +89,5 @@ Alternatively, you may simply disable the behavior of CAS Maestro as follows:
 
 == Upgrade Notice ==
 
-= 1.0 =
-Initial release
+= 1.1 =
+New version with CAS Auth bypass

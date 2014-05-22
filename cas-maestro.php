@@ -3,7 +3,7 @@
 Plugin Name: CAS Maestro
 Plugin URL: http://nme.ist.utl.pt
 Description: CAS plugin with LDAP integration
-Version: 1.0.4
+Version: 1.1
 Author: NME - Núcleo de Multimédia e E-Learning.
 Author URI: http://nme.ist.utl.pt
 Text Domain: CAS_Maestro
@@ -47,6 +47,8 @@ class CAS_Maestro {
 
 	public $settings_hook = array('settings_page_wpcas_settings','toplevel_page_wpcas_settings');
 	public $current_page_hook;
+
+	public $bypass_cas = false;
 	/*--------------------------------------------*
 	 * Constructor
 	 *--------------------------------------------*/
@@ -98,7 +100,13 @@ class CAS_Maestro {
  		$this->phpcas_path = get_option('wpCAS_phpCAS_path',CAS_MAESTRO_PLUGIN_PATH.'phpCAS/CAS.php');
  		$this->allowed_users = get_option('wpCAS_allowed_users',array());	
 
- 		$this->init(!defined('WPCAS_BYPASS'));
+ 		if(!isset($_SESSION))
+			session_start();
+
+ 		$this->bypass_cas = defined('WPCAS_BYPASS') || isset($_GET['wp']) || isset($_GET['checkemail']) ||
+ 			(isset($_SESSION['not_using_CAS']) && $_SESSION['not_using_CAS'] == true);
+		
+		$this->init(!$this->bypass_cas);
 	} 
  
 
@@ -142,7 +150,6 @@ class CAS_Maestro {
 				 * Filters and actions registration
 				 */		
 				add_filter('authenticate', array(&$this, 'validate_login'), 30, 3);
-				add_action('wp_logout', array(&$this, 'process_logout'));
 				add_filter('login_url', array(&$this, 'bypass_reauth'));
 				add_action('lost_password', array(&$this, 'disable_function'));
 				add_action('retrieve_password', array(&$this, 'disable_function'));
@@ -155,6 +162,8 @@ class CAS_Maestro {
 			}
 
 		}
+		add_action('wp_logout', array(&$this, 'process_logout'));
+
 		//Register the language initialization
 		add_action('init' ,array(&$this, 'lang_init'));
 		add_action('admin_init', array(&$this, 'add_meta_boxes'));
@@ -163,7 +172,11 @@ class CAS_Maestro {
 
 		add_action('admin_menu', array( &$this,'register_menus'), 50);
 		add_action('admin_enqueue_scripts', array(&$this, 'register_javascript'));
-
+		//Filter to rewrite the login form action to bypass cas
+		if($this->bypass_cas) {
+			add_filter('site_url', array(&$this, 'bypass_cas_login_form'), 20, 3);
+			add_filter('authenticate', array(&$this, 'validate_noncas_login'), 30, 3);
+		}
 	}
 
 	/**
@@ -191,12 +204,20 @@ class CAS_Maestro {
 	 * Authentication managment      
 	 *----------------------------------------------*/
 
+	function validate_noncas_login($user, $username, $password) {
+		//Add session to flag that user logged in without CAS
+		if(!is_wp_error($user)) {
+			if(!isset($_SESSION))
+				session_start();
+			$_SESSION['not_using_CAS'] = true;
+		}
+		return $user;
+	}
+
 	/** 
 	 * Validate the login using CAS
 	 */
 	function validate_login($null, $username, $password) {
-		if($_GET['nocas'])
-			return; //TODO, verify if we want to login without CAS
 
 		if (!$this->cas_configured) {
 			die('Error. Cas not configured and I was unable to redirect you to wp-login. Use define("WPCAS_BYPASS",true); in your wp-config.php
@@ -336,9 +357,24 @@ class CAS_Maestro {
 
 	}
 
+	function bypass_cas_login_form($url, $path, $orig_scheme) {
+		if($this->bypass_cas) {
+			if( $path=='wp-login.php' ||
+				$path=='wp-login.php?action=register' ||
+				$path == 'wp-login.php?action=lostpassword' )  
+				return add_query_arg('wp', '', $url);
+		}
+		return $url;
+	}
+
 	function process_logout() {
+		$not_using_cas =isset($_SESSION['not_using_CAS']) && $_SESSION['not_using_CAS'] == true;
 		session_destroy();
-	    phpCAS::logoutWithRedirectService(get_option('siteurl'));
+
+		if( $not_using_cas )
+			wp_redirect(home_url());
+		else
+		    phpCAS::logoutWithRedirectService(get_option('siteurl'));
 	    exit();
 	}	
 
