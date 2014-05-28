@@ -4,7 +4,7 @@ Donate link: https://dsi.tecnico.ulisboa.pt
 Tags: cas, maestro, central, centralized, authentication, auth, service, system, server, phpCAS, integration, ldap
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ Yes. But the login URL is slighty different: you must login over `/wp-login.php?
 3. Mailing options
 
 == Changelog ==
+
+= 1.1.1 =
+* CAS Server Path is no longer a mandatory field 
 
 = 1.1 =
 * Bypass to the CAS authentication implemented using a query parameter
