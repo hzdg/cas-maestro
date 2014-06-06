@@ -223,9 +223,9 @@ class CAS_Maestro {
 	function handle_cas_redirect() {
 		global $wp_query;
 
-		$cat = explode('/', $wp_query->query_vars['category_name'])[0];
+		$cat = explode('/', $wp_query->query_vars['category_name']);
 
-		if ($cat === 'cas-login') {
+		if ($cat[0] === 'cas-login') {
 
 			$success = $this->validate_login();
 
