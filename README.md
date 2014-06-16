@@ -1,4 +1,5 @@
-=== CAS Maestro ===
+# CAS Maestro
+
 Contributors: vaurdan, jpargana, ricardobaeta
 Donate link: https://dsi.tecnico.ulisboa.pt
 Tags: cas, maestro, central, centralized, authentication, auth, service, system, server, phpCAS, integration, ldap
@@ -10,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 CAS Maestro allows you to configure your centralized authentication service, CAS, for an integrated log in with WordPress. LDAP is optional.
 
-== Description ==
+## Description
 
 If you have a CAS service and you want to authenticate your users in WordPress with the same credentials, you can use this plugin to get the job done.
 
@@ -28,7 +29,7 @@ Features included:
 * Mail notification for pre-registered users
 * Network activation allowed (todo: network panel for configuration)
 
-== Installation ==
+## Installation
 
 1. Install Cas Maestro either via the WordPress.org plugin directory, or by uploading the files to your server (`/wp-content/plugins/`) 
 2. Activation can be made in 'Plugins' menu
@@ -38,7 +39,11 @@ Features included:
 
 **Did you know...** If you leave empty fields in CAS Maestro configuration, the plugin will ask you to fill fields before final activation. Therefore you can use WordPress login system before the configuration conclusion.
 
-== Frequently Asked Questions ==
+## Overriding the user creation process
+
+You can customize the registration logic by overriding the plugin's `process_login` and `process_logout` methods by adding functions with identical names in functions.php
+
+## Frequently Asked Questions
 
 = In case that I cannot access the content manager due to a misconfiguration of this plugin, what steps should I perform? =
 
@@ -59,13 +64,13 @@ Alternatively, you may simply uninstall CAS Maestro as follows:
 = It is possible to login using WordPress accounts? =
 Yes. But the login URL is slighty different: you must login over `/wp-login.php?wp` URL. This will give access to the standard WordPress login form so you can use both authentication methods.
 
-== Screenshots ==
+## Screenshots
 
 1. The full CAS Maestro settings page
 2. CAS Server settings
 3. Mailing options
 
-== Changelog ==
+## Changelog
 
 = 1.1.2 =
 * Fixed bug with wrong type of the CAS Server version
@@ -93,7 +98,7 @@ Yes. But the login URL is slighty different: you must login over `/wp-login.php?
 = 1.0 =
 * Initial release.
 
-== Upgrade Notice ==
+## Upgrade Notice
 
-= 1.1 =
+## 1.1
 New version with CAS Auth bypass
