@@ -321,6 +321,8 @@ class CAS_Maestro {
     	if (function_exists('process_login'))
     		return process_login($this);
 
+    	$this->validate_login();
+
 		$username = phpCAS::getUser();
 
      	$password = md5($username.'wpCASAuth!"#$"!$!"%$#"%#$'.rand().$this->generateRandomString(20));
